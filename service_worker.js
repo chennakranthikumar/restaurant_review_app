@@ -7,7 +7,7 @@ self.addEventListener('install', e => {
     caches.open(firstCacheName).then(cache => {
       return cache.addAll(cacheData);
     })
-  )
+  );
 })
 
 
@@ -20,7 +20,7 @@ self.addEventListener('activate', function(event) {
           return cacheName.startsWith('restaurant-') &&
             cacheName != firstCacheName;
         }).map(function(cacheName) {
-          return caches.delete(cacheName);
+          return caches.delete(firstCacheName);
         })
       );
     })
@@ -37,7 +37,7 @@ self.addEventListener('fetch', e => {
           return response;
 
         })
-      })
+      });
     })
-  )
+  );
 })
