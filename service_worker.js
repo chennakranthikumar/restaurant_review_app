@@ -14,9 +14,7 @@ self.addEventListener('install', e => {
       return cache.addAll(cacheData);
 
     })
-
-  )
-
+  );
 })
 
 
@@ -38,9 +36,7 @@ self.addEventListener('activate', function(event) {
             cacheName != firstCacheName;
 
         }).map(function(cacheName) {
-
-          return caches.delete(cacheName);
-
+          return caches.delete(firstCacheName);
         })
 
       );
@@ -70,11 +66,7 @@ self.addEventListener('fetch', e => {
 
 
         })
-
-      })
-
+      });
     })
-
-  )
-
+  );
 })
