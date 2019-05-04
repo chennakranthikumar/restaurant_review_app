@@ -51,4 +51,6 @@ Most of the code in this project has been written to the ES6 JavaScript specific
 
 #server operation:
 
-  1. after that we need to run the website on python server so that we can have the accurate search engine operation and accessibility to load in any device
+  1. after that we need to run the website on python server so that we can have the accurate search engine operation and accessibility to load in any device  
+  
+##This project works offline and responsive .
