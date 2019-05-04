@@ -11,8 +11,8 @@ self.addEventListener('install', e => {
 })
 
 
-self.addEventListener('activate', function(e) {
-  e.waitUntil(
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
     caches.keys()
     .then(function(cacheNames) {
       return Promise.all(
