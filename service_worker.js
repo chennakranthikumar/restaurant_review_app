@@ -1,72 +1,46 @@
-var firstCacheName = 'version0';
+let initialcacheName='restaurantStore';
 
-var cacheData = [];
+// Installing service Worker using install event
+self.addEventListener('install', function (event) {
+ console.log('serviceWorker Installed');
+ event.waitUntil(
+   caches.open(initialcacheName)
+     .then(function (cache) {
 
+       cache.addAll([
+         
+       ]);
+     })
+ );
+});
 
-self.addEventListener('install', e => {
-
-  console.log("service worker installed successfully");
-
-  e.waitUntil(
-
-    caches.open(firstCacheName).then(cache => {
-
-      return cache.addAll(cacheData);
-
-    })
-  );
-})
-
-
-
+// Activating serviceWorker
 self.addEventListener('activate', function(event) {
-
   event.waitUntil(
-
     caches.keys()
-
     .then(function(cacheNames) {
-
       return Promise.all(
-
         cacheNames.filter(function(cacheName) {
-
           return cacheName.startsWith('restaurant-') &&
-
-            cacheName != firstCacheName;
-
+               cacheName != initialcacheName;
         }).map(function(cacheName) {
-          return caches.delete(firstCacheName);
+          return caches.delete(cacheName);
         })
-
       );
-
     })
-
   );
-
 })
 
-
-self.addEventListener('fetch', e => {
-
-  console.log("service worker fetched successfully");
-
-  e.respondWith(
-
-    caches.open(firstCacheName).then(cache => {
-
-      return cache.match(e.request).then(result => {
-
-        return result || fetch(e.request).then(response => {
-
-          cache.put(e.request, response.clone());
-
+// Fetching Data using fetch event
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(resp) {
+      return resp || fetch(event.request).then(function(response) {
+        return caches.open(initialcacheName).then(function(cache) {
+          cache.put(event.request, response.clone());
           return response;
-
-
-        })
+        });  
       });
     })
   );
-})
+});
