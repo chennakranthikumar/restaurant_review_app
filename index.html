@@ -59,21 +59,37 @@
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script> -->
-  <script>
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register("service_worker.js").then(() => {
-          console.log("service worker registered successfully");
-        })
-        .catch((err => {
-          console.log("sorry service worker not registered", error);
-        }))
-    }
-  </script>
 <!-- footer tag -->
+<script type="text/javascript">
+
+
+
+/* Set up service worker */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+  .register('/service_worker.js', {scope: "/"})
+    .then(reg => {
+      console.log('Service Worker Registration Successful: ' + reg.scope);
+    })
+    .catch(error => {
+      console.log('Service Worker Registration Failed: ' + error);
+    });
+}
+
+
+window.onload = function() {
+
+ if (!window.location.hash)
+  {
+  window.location = window.location + '#loaded'; window.location.reload();
+   }
+ }
+</script>
   <footer id="footer" tabindex="0" role="banner">
     Copyright (c) 2017 <a href="/" tabindex="0"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
+
 
 </body>
 
