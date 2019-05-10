@@ -7,7 +7,8 @@ var staticCacheName = 'mws-restaurant-static-v';
  staticCacheName += cache_id;
 
 self.addEventListener("install", function(event) {
-  event.waitUntil(
+console.log("cached storaged version"+staticCacheName); 
+ event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
     return cache.addAll([
       'index.html',
@@ -28,6 +29,7 @@ self.addEventListener("install", function(event) {
 });
 
 self.addEventListener('activate', function(event) {
+	console.log("cached storaged version"+staticCacheName);
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(

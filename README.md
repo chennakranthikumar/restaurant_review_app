@@ -41,10 +41,20 @@ Most of the code in this project has been written to the ES6 JavaScript specific
 #storing caches or offline capabilty:
 
  1.  Service_worker.js to store the caches in browser its work on offline .
+ 
+## Problem:
+
+    1. the  caches storage will not storage the data when page is freshly loaded(sloved).  
+	
+## Solution:  
+
+    1. the web  page will be reloaded when the page is freshly loaded.
+	
+	
 ## stages serviceWorker operation:
- 1. install
- 2. activate
- 3. fetch
+ 1. install or error
+ 2. activate or error
+ 3. fetch or error
 
 #webite icon :
  1. The manifest file  is add to generate the web site icon .
@@ -53,4 +63,3 @@ Most of the code in this project has been written to the ES6 JavaScript specific
 
   1. after that we need to run the website on python server so that we can have the accurate search engine operation and accessibility to load in any device  .
 
-##This project works offline and responsive .

@@ -98,6 +98,14 @@
         console.log('Service Worker Registration Failed: ' + error);
       });
   }
+  /* to reload the page when page is freshly loaded*/
+window.onload = function() {
+
+ if (!window.location.hash)
+  {
+  window.location = window.location + '#loaded'; window.location.reload();
+   }
+ }
 
   </script>
 
